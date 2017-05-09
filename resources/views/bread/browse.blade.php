@@ -24,7 +24,6 @@
                         <table id="dataTable" class="row table table-hover">
                             <thead>
                                 <tr>
-
                                     @foreach($dataType->browseRows as $rows)
                                     <th>{{ $rows->display_name }}</th>
                                     @endforeach
@@ -118,7 +117,7 @@
                         </table>
                         @if (isset($dataType->server_side) && $dataType->server_side)
                             <div class="pull-left">
-                                <div role="status" class="show-res" aria-live="polite">Showing {{ $dataTypeContent->firstItem() }} to {{ $dataTypeContent->lastItem() }} of {{ $dataTypeContent->total() }} entries</div>
+                                <div role="status" class="show-res" aria-live="polite">显示 {{ $dataTypeContent->firstItem() }} 到 {{ $dataTypeContent->lastItem() }} 条，共 {{ $dataTypeContent->total() }} 条数据</div>
                             </div>
                             <div class="pull-right">
                                 {{ $dataTypeContent->links() }}
