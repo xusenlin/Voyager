@@ -21,14 +21,14 @@ class PostDimmer extends AbstractWidget
     public function run()
     {
         $count = Voyager::model('Post')->count();
-        $string = $count == 1 ? 'post' : 'posts';
+        $string = $count == 1 ? '篇文章' : '篇文章';
 
         return view('voyager::dimmer', array_merge($this->config, [
             'icon'   => 'voyager-group',
             'title'  => "{$count} {$string}",
-            'text'   => "You have {$count} {$string} in your database. Click on button below to view all posts.",
+            'text'   => "你有 {$count} {$string} 在你的数据库里面. 点击下面按钮查看更多文章.",
             'button' => [
-                'text' => 'View all posts',
+                'text' => '查看全部文章',
                 'link' => route('voyager.posts.index'),
             ],
             'image' => voyager_asset('images/widget-backgrounds/03.png'),

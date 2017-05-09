@@ -4,6 +4,7 @@
             @foreach($alert->components as $component)
                 <?php echo $component->render(); ?>
             @endforeach
+
         </div>
     @endforeach
 </div>
