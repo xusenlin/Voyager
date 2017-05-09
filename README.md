@@ -29,7 +29,7 @@ Voyager 是一个非常棒的后台管理，但是原作者并没有打算将他
 
 #如何安装
 
-1、拉取tcg/voyager
+1、拉取tcg/voyager,这个翻译的版本是v0.11.10，其他版本可能会出错。
 ```bash
 composer require tcg/voyager
 ```
