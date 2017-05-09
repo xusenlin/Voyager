@@ -12,7 +12,8 @@
 # **V**oyager - 一个laravel的后台管理
 Made with ❤️ by [The Control Group](https://www.thecontrolgroup.com)
 
-![Voyager Screenshot](https://raw.githubusercontent.com/the-control-group/voyager/gh-pages/images/screenshot.png)
+
+![Voyager-zh Screenshot](http://xusenlin.com/usr/uploads/2017/05/3411382474.jpg)
 
 站点 & 文档: https://the-control-group.github.io/voyager/
 
