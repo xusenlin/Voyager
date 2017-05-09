@@ -9,32 +9,36 @@
 <a href="https://github.com/larapack/awesome-voyager"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome Voyager"></a>
 </p>
 
-# **V**oyager - The Missing Laravel Admin
+# **V**oyager - 一个laravel的后台管理
 Made with ❤️ by [The Control Group](https://www.thecontrolgroup.com)
 
 ![Voyager Screenshot](https://raw.githubusercontent.com/the-control-group/voyager/gh-pages/images/screenshot.png)
 
-Website & Documentation: https://the-control-group.github.io/voyager/
+站点 & 文档: https://the-control-group.github.io/voyager/
 
-Video Demo Here: https://devdojo.com/series/laravel-voyager-010/
+视频演示: https://devdojo.com/series/laravel-voyager-010/
 
-Join our Slack chat: https://voyager-slack-invitation.herokuapp.com/
+加入我们的聊天: https://voyager-slack-invitation.herokuapp.com/
 
-View the Voyager Cheat Sheet: https://voyager-cheatsheet.ulties.com/
+查看 Voyager 提示: https://voyager-cheatsheet.ulties.com/
 
-Recent Video on Larachat Live with Voyager: https://larachat.co/live
+Voyager最近的视频: https://larachat.co/live
 
 <hr>
+Voyager 是一个非常棒的后台管理，但是原作者并没有打算将他翻译为中文，这个是由我翻译的中文，可能有的地方翻译不准确（英文太渣--），希望大家加入进来给我提意见，如果你喜欢，欢迎star.
 
-Laravel Admin & BREAD System (Browse, Read, Edit, Add, & Delete), made for Laravel 5.3.
+#如何安装
 
-After creating your new Laravel application you can include the Voyager package with the following command: 
-
+1、拉取tcg/voyager
 ```bash
 composer require tcg/voyager
 ```
 
-Next make sure to create a new database and add your database credentials to your .env file:
+
+2、下载这个翻译文件覆盖掉tcg/voyager的所有文件
+
+
+3、修改你的.env 文件里面的数据库配置:
 
 ```
 DB_HOST=localhost
@@ -43,13 +47,13 @@ DB_USERNAME=homestead
 DB_PASSWORD=secret
 ```
 
-You will also want to update your website URL inside of the `APP_URL` variable inside the .env file:
+4、然后在.env 文件里面配置 `APP_URL` ，否则会导致默认头像显示不了之类的:
 
 ```
 APP_URL=http://localhost:8000
 ```
 
-Add the Voyager service provider to the `config/app.php` file in the `providers` array:
+5、添加 Voyager 服务到 `config/app.php` 文件 的`providers` 数组里:
 
 ```php
 'providers' => [
@@ -65,45 +69,19 @@ Add the Voyager service provider to the `config/app.php` file in the `providers`
 ],
 ```
 
-Lastly, we can install voyager. You can do this either with or without dummy data.
-The dummy data will include 1 admin account (if no users already exists), 1 demo page, 4 demo posts, 2 categories and 7 settings.
-
-To install Voyager without dummy simply run
+6、安装voyager，他会复制一些迁移文件和模拟数据文件（seed）等到我们的工作目录并将它迁移到数据库。
 
 ```bash
 php artisan voyager:install
 ```
 
-If you prefer installing it with dummy run
+7、现在模拟一个admin用户以便于我们登录后台，（注意：我已经修改了密码，邮箱：admin@admin.com 密码：123456）
 
 ```bash
-php artisan voyager:install --with-dummy
+php artisan db:seed --class=UsersTableSeeder
 ```
 
-> Troubleshooting: **Specified key was too long error**. If you see this error message you have an outdated version of MySQL, use the following solution: https://laravel-news.com/laravel-5-4-key-too-long-error
-
-And we're all good to go!
-
-Start up a local development server with `php artisan serve` And, visit [http://localhost:8000/admin](http://localhost:8000/admin).
-
-If you did go ahead with the dummy data, a user should have been created for you with the following login credentials:
 
 >**email:** `admin@admin.com`   
->**password:** `password`
+>**password:** `123456`
 
-NOTE: Please note that a dummy user is **only** created if there are no current users in your database.
-
-If you did not go with the dummy user, you may wish to assign admin priveleges to an existing user.
-This can easily be done by running this command:
-
-```bash
-php artisan voyager:admin your@email.com
-```
-
-If you did not install the dummy data and you wish to create a new admin user you can pass the `--create` flag, like so:
-
-```bash
-php artisan voyager:admin your@email.com --create
-```
-
-And you will be prompted for the users name and password.
