@@ -70,7 +70,7 @@ class DataRowsTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'text',
-                'display_name' => 'Title',
+                'display_name' => '标题',
                 'required'     => 1,
                 'browse'       => 1,
                 'read'         => 1,
@@ -118,7 +118,7 @@ class DataRowsTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'image',
-                'display_name' => 'Post Image',
+                'display_name' => '文章图片',
                 'required'     => 0,
                 'browse'       => 1,
                 'read'         => 1,
@@ -213,7 +213,7 @@ class DataRowsTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'select_dropdown',
-                'display_name' => 'status',
+                'display_name' => '状态',
                 'required'     => 1,
                 'browse'       => 1,
                 'read'         => 1,
@@ -237,7 +237,7 @@ class DataRowsTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'timestamp',
-                'display_name' => 'created_at',
+                'display_name' => '创建时间',
                 'required'     => 0,
                 'browse'       => 1,
                 'read'         => 1,
@@ -253,7 +253,7 @@ class DataRowsTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'timestamp',
-                'display_name' => 'updated_at',
+                'display_name' => '更新时间',
                 'required'     => 0,
                 'browse'       => 0,
                 'read'         => 0,
@@ -803,7 +803,7 @@ class DataRowsTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'text',
-                'display_name' => '名字',
+                'display_name' => '角色名字',
                 'required'     => 1,
                 'browse'       => 1,
                 'read'         => 1,
@@ -851,7 +851,7 @@ class DataRowsTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'text',
-                'display_name' => '角色',
+                'display_name' => '角色描述',
                 'required'     => 1,
                 'browse'       => 1,
                 'read'         => 1,
