@@ -74,11 +74,6 @@ APP_URL=http://localhost:8000
 ```bash
 php artisan voyager:install
 ```
-9、填充网站的一些设置
-
-```bash
-php artisan db:seed --class=SettingsTableSeeder
-```
 
 
 7、填充网站的一些设置
