@@ -238,6 +238,9 @@ return [
         'database'=>'数据库',
         'settings'=>'设置',
         'create'=>'创建',
+        'edit'=>'编辑',
+        'builder'=>'构建',
+        'bread'=>'BREAD'
     ]
 
 ];
