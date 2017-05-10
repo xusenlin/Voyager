@@ -7,9 +7,9 @@
 
 @section('page_header')
     <h1 class="page-title">
-        <i class="voyager-data"></i> Database
+        <i class="voyager-data"></i> 数据库
         <a href="{{ route('voyager.database.create') }}" class="btn btn-success"><i class="voyager-plus"></i>
-            Create New Table</a>
+            创建一个新的表</a>
     </h1>
 @stop
 
@@ -23,9 +23,9 @@
                 <table class="table table-striped database-tables">
                     <thead>
                         <tr>
-                            <th>Table Name</th>
+                            <th>表名</th>
                             <th>BREAD/CRUD Actions</th>
-                            <th style="text-align:right">Table Actions</th>
+                            <th style="text-align:right">表操作</th>
                         </tr>
                     </thead>
 
@@ -59,7 +59,7 @@
                             @else
                                 <a href="{{ route('voyager.database.bread.create', ['name' => $table->name]) }}"
                                    class="btn-sm btn-default">
-                                    <i class="voyager-plus"></i> Add BREAD to this table
+                                    <i class="voyager-plus"></i> 添加 BREAD 到这个表
                                 </a>
                             @endif
                             </div>
@@ -68,16 +68,16 @@
                         <td class="actions">
                             <a class="btn-danger btn-sm pull-right delete_table @if($table->dataTypeId) remove-bread-warning @endif"
                                data-table="{{ $table->name }}" style="display:inline; cursor:pointer;">
-                               <i class="voyager-trash"></i> Delete
+                               <i class="voyager-trash"></i> 删除
                             </a>
                             <a href="{{ route('voyager.database.edit', $table->name) }}"
                                class="btn-sm btn-primary pull-right" style="display:inline; margin-right:10px;">
-                               <i class="voyager-edit"></i> Edit
+                               <i class="voyager-edit"></i> 编辑
                             </a>
                             <a href="{{ route('voyager.database.show', $table->name) }}"
                                data-name="{{ $table->name }}"
                                class="btn-sm btn-warning pull-right desctable" style="display:inline; margin-right:10px;">
-                               <i class="voyager-eye"></i> View
+                               <i class="voyager-eye"></i> 查看
                             </a>
                         </td>
                     </tr>

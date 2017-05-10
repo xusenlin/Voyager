@@ -15,6 +15,7 @@
 @stop
 
 @section('content')
+
     <div class="page-content container-fluid">
         @include('voyager::alerts')
         <div class="row">

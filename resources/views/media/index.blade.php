@@ -15,7 +15,7 @@
             <div class="col-md-12">
 
                 <div class="admin-section-title">
-                    <h3><i class="voyager-images"></i> Media</h3>
+                    <h3><i class="voyager-images"></i> 媒体</h3>
                 </div>
                 <div class="clear"></div>
 
@@ -24,23 +24,23 @@
                     <div id="toolbar">
                         <div class="btn-group offset-right">
                             <button type="button" class="btn btn-primary" id="upload"><i class="voyager-upload"></i>
-                                Upload
+                                上传
                             </button>
                             <button type="button" class="btn btn-primary" id="new_folder"
                                     onclick="jQuery('#new_folder_modal').modal('show');"><i class="voyager-folder"></i>
-                                Add folder
+                                添加文件夹
                             </button>
                         </div>
                         <button type="button" class="btn btn-default" id="refresh"><i class="voyager-refresh"></i>
                         </button>
                         <div class="btn-group offset-right">
-                            <button type="button" class="btn btn-default" id="move"><i class="voyager-move"></i> Move
+                            <button type="button" class="btn btn-default" id="move"><i class="voyager-move"></i> 移动
                             </button>
                             <button type="button" class="btn btn-default" id="rename"><i class="voyager-character"></i>
-                                Rename
+                                重命名
                             </button>
                             <button type="button" class="btn btn-default" id="delete"><i class="voyager-trash"></i>
-                                Delete
+                                删除
                             </button>
                         </div>
                     </div>
@@ -56,8 +56,7 @@
 
                         <div class="breadcrumb-container">
                             <ol class="breadcrumb filemanager">
-                                <li data-folder="/" data-index="0"><span class="arrow"></span><strong>Media
-                                        Library</strong></li>
+                                <li data-folder="/" data-index="0"><span class="arrow"></span><strong>媒体库</strong></li>
                                 <template v-for="folder in folders">
                                     <li data-folder="@{{folder}}" data-index="@{{ $index+1 }}"><span
                                                 class="arrow"></span>@{{ folder }}</li>
@@ -116,11 +115,11 @@
                                     @else
                                         <img src="{{ Voyager::image($admin_loader_img) }}" alt="Voyager Loader">
                                     @endif
-                                    <p>LOADING YOUR MEDIA FILES</p>
+                                    <p>加载媒体中。。。。</p>
                                 </div>
 
                                 <div id="no_files">
-                                    <h3><i class="voyager-meh"></i> No files in this folder.</h3>
+                                    <h3><i class="voyager-meh"></i> 这个文件夹是空的.</h3>
                                 </div>
 
                             </div>
@@ -128,7 +127,7 @@
                             <div id="right">
                                 <div class="right_none_selected">
                                     <i class="voyager-cursor"></i>
-                                    <p>No File or Folder Selected</p>
+                                    <p>没有选择文件或者文件夹</p>
                                 </div>
                                 <div class="right_details">
                                     <div class="detail_img @{{ selected_file.type }}">
@@ -160,17 +159,17 @@
 
                                     </div>
                                     <div class="detail_info @{{selected_file.type}}">
-							<span><h4>Title:</h4>
+							<span><h4>标题:</h4>
 							<p>@{{selected_file.name}}</p></span>
-                                        <span><h4>Type:</h4>
+                                        <span><h4>类型:</h4>
 							<p>@{{selected_file.type}}</p></span>
                                         <template v-if="selected_file.type != 'folder'">
-								<span><h4>Size:</h4>
+								<span><h4>大小:</h4>
 								<p><span class="selected_file_count">@{{ selected_file.items }} item(s)</span><span
                                             class="selected_file_size">@{{selected_file.size}}</span></p></span>
-                                            <span><h4>Public URL:</h4>
-								<p><a href="@{{ selected_file.path }}" target="_blank">Click Here</a></p></span>
-                                            <span><h4>Last Modified:</h4>
+                                            <span><h4>公共 URL:</h4>
+								<p><a href="@{{ selected_file.path }}" target="_blank">点击这里</a></p></span>
+                                            <span><h4>上次更改:</h4>
 								<p>@{{selected_file.last_modified}}</p></span>
                                         </template>
                                     </div>
@@ -182,7 +181,7 @@
 
                         <div class="nothingfound">
                             <div class="nofiles"></div>
-                            <span>No files here.</span>
+                            <span>这里没有文件.</span>
                         </div>
 
                     </div>

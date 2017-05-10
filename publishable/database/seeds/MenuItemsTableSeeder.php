@@ -20,7 +20,7 @@ class MenuItemsTableSeeder extends Seeder
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
-                'title'      => '仪表盘',
+                'title'      => '控制台',
                 'url'        => route('voyager.dashboard', [], false),
             ]);
             if (!$menuItem->exists) {
