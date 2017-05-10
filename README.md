@@ -75,7 +75,13 @@ APP_URL=http://localhost:8000
 php artisan voyager:install
 ```
 
-7、现在模拟一个admin用户以便于我们登录后台，（注意：我已经修改了密码，邮箱：admin@admin.com 密码：123456）
+7、填充网站的一些设置
+
+```bash
+php artisan db:seed --class=SettingsTableSeeder
+```
+
+8、现在模拟一个admin用户以便于我们登录后台，（注意：我已经修改了密码，邮箱：admin@admin.com 密码：123456）
 
 ```bash
 php artisan db:seed --class=UsersTableSeeder

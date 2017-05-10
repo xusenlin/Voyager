@@ -14,6 +14,7 @@ class VoyagerController extends Controller
 {
     public function index()
     {
+        
         return view('voyager::index');
     }
 
