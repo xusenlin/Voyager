@@ -64,7 +64,7 @@ class VoyagerBreadController extends Controller
         if (view()->exists("voyager::$slug.browse")) {
             $view = "voyager::$slug.browse";
         }
-
+        //dd($view);
         return view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
     }
 

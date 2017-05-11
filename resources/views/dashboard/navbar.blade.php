@@ -19,7 +19,7 @@
                 @endif
                 <?php
                     $breadcrumb_url = '';
-                    $breadcrumb_zh = config('voyager.breadcrumb_zh');
+                    $voyager_zh = config('voyager.voyager_zh');
                 ?>
                 @for($i = 1; $i <= count(Request::segments()); $i++)
                     <?php $breadcrumb_url .= '/' . Request::segment($i); ?>
@@ -27,10 +27,10 @@
 
                         @if($i < count(Request::segments()) & $i > 0)
                             <li class="active"><a
-                                        href="{{ $breadcrumb_url }}">{{ @$breadcrumb_zh[str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))]?:'未配置' }}</a>
+                                        href="{{ $breadcrumb_url }}">{{ @$voyager_zh[str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))]?:'未配置' }}</a>
                             </li>
                         @else
-                            <li>{{ @$breadcrumb_zh[str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))]?:'未配置'  }}</li>
+                            <li>{{ @$voyager_zh[str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))]?:'未配置'  }}</li>
                         @endif
 
                     @endif

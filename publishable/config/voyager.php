@@ -226,8 +226,8 @@ return [
     'additional_js' => [
         //'js/custom.js',
     ],
-    //导航面包屑的翻译
-    'breadcrumb_zh'=>[
+    //导航面包屑和权限的翻译
+    'voyager_zh'=>[
         'roles'=>'角色',
         'users'=>'用户',
         'media'=>'媒体',
@@ -240,7 +240,13 @@ return [
         'create'=>'创建',
         'edit'=>'编辑',
         'builder'=>'构建',
-        'bread'=>'BREAD'
+        'bread'=>'BREAD',
+        'profile'=>'个人信息',
+        'browse'=>'浏览',
+        'add'=>'添加',
+        'delete'=>'删除',
+        'read'=>'阅读',
+        'admin'=>'后台'
     ]
 
 ];
