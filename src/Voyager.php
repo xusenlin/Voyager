@@ -145,6 +145,31 @@ class Voyager
         return $default;
     }
 
+    public function voyagerPostZh($str,$field){
+        if ('status' == $field){
+            switch ($str){
+                case 'DRAFT':
+                    return '草稿';
+                case 'PENDING':
+                    return '待定';
+                case 'PUBLISHED':
+                    return '公开';
+                default:
+                    return $str;
+            }
+        }
+        if ('featured' == $field){
+            switch ($str){
+                case '0' :
+                    return '否';
+                case '1' :
+                    return '是';
+                default:
+                    return $str;
+            }
+        }
+        return $str;
+    }
     public function image($file, $default = '')
     {
         if (!empty($file) && Storage::disk(config('voyager.storage.disk'))->exists($file)) {

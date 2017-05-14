@@ -1,6 +1,6 @@
 @extends('voyager::master')
 
-@section('page_title','All '.$dataType->display_name_plural)
+@section('page_title',$dataType->display_name_plural)
 
 @section('page_header')
     <h1 class="page-title">
@@ -15,7 +15,6 @@
 @stop
 
 @section('content')
-
     <div class="page-content container-fluid">
         @include('voyager::alerts')
         <div class="row">
@@ -45,7 +44,7 @@
                                                     '_field_trans' => get_field_translations($data, $row->field)
                                                 ])
                                             @endif
-                                            <span>{{ $data->{$row->field} }}</span>
+                                            <span>{{ Voyager::voyagerPostZh($data->{$row->field},$row->field) }}</span>
                                         @endif
                                     </td>
                                     @endforeach
@@ -72,7 +71,7 @@
                         </table>
                         @if (isset($dataType->server_side) && $dataType->server_side)
                             <div class="pull-left">
-                                <div role="status" class="show-res" aria-live="polite">显示 {{ $dataTypeContent->firstItem() }} 到 {{ $dataTypeContent->lastItem() }} 共有 {{ $dataTypeContent->total() }} 条数据</div>
+                                <div role="status" class="show-res" aria-live="polite">从 {{ $dataTypeContent->firstItem() }} 到 {{ $dataTypeContent->lastItem() }} /共 {{ $dataTypeContent->total() }} 条数据</div>
                             </div>
                             <div class="pull-right">
                                 {{ $dataTypeContent->links() }}
@@ -113,7 +112,15 @@
     <script>
         $(document).ready(function () {
             @if (!$dataType->server_side)
-                $('#dataTable').DataTable({ "order": [] });
+                $('#dataTable').DataTable({
+                    "order": [],
+                    "oLanguage":{
+                        "sInfo":"从 _START_  到  _END_  /共 _TOTAL_ 条数据",
+                        "sLengthMenu":"每页显示 _MENU_ 条记录",
+                        "sSearch":'搜索',
+                        "oPaginate":{"sFirst":'首页',"sPrevious":"上一页","sNext":"下一页","sLast":"尾页"}
+                    }
+                });
             @endif
             @if ($isModelTranslatable)
                 $('.side-body').multilingual();

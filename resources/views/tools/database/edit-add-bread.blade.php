@@ -1,8 +1,8 @@
 @extends('voyager::master')
-
+@section('page_title',isset($dataType->id) ? '编辑 BREAD' : '新增 BREAD')
 @section('page_header')
     <div class="page-title">
-        <i class="voyager-data"></i> @if(isset($dataType->id)){{ 'Edit BREAD for ' . $dataType->name . ' table' }}@elseif(isset($table)){{ 'Create BREAD for ' . $table . ' table' }}@endif
+        <i class="voyager-data"></i> @if(isset($dataType->id)){{ '编辑 BREAD 在这张' . $dataType->name . ' 表' }}@elseif(isset($table)){{ '创建 BREAD 在这张 ' . $table . ' 表' }}@endif
     </div>
     @php
         $isModelTranslatable = (!isset($isModelTranslatable) || !isset($dataType)) ? false : $isModelTranslatable;
@@ -31,20 +31,20 @@
                     <div class="panel panel-primary panel-bordered">
 
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{ ucfirst($table) }} BREAD info</h3>
+                            <h3 class="panel-title">{{ ucfirst($table) }} BREAD 信息</h3>
                         </div>
 
                         <div class="panel-body">
                             <div class="row clearfix">
                                 <div class="col-md-6 form-group">
-                                    <label for="name">Table Name</label>
+                                    <label for="name">表名</label>
                                     <input type="text" class="form-control" readonly name="name" placeholder="Name"
                                            value="@if(isset($dataType->name)){{ $dataType->name }}@else{{ $table }}@endif">
                                 </div>
                             </div>
                             <div class="row clearfix">
                                 <div class="col-md-6 form-group">
-                                    <label for="email">Display Name (Singular)</label>
+                                    <label for="email">显示名字 (Singular)</label>
                                     @if($isModelTranslatable)
                                         @include('voyager::multilingual.input-hidden', [
                                             'isModelTranslatable' => true,
@@ -59,7 +59,7 @@
                                            value="@if(isset($dataType->display_name_singular)){{ $dataType->display_name_singular }}@else{{ $display_name }}@endif">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="email">Display Name (Plural)</label>
+                                    <label for="email">显示名字 (Plural)</label>
                                     @if($isModelTranslatable)
                                         @include('voyager::multilingual.input-hidden', [
                                             'isModelTranslatable' => true,
@@ -70,18 +70,18 @@
                                     <input type="text" class="form-control"
                                            name="display_name_plural"
                                            id="display_name_plural"
-                                           placeholder="Display Name (Plural)"
+                                           placeholder="显示名字 (Plural)"
                                            value="@if(isset($dataType->display_name_plural)){{ $dataType->display_name_plural }}@else{{ $display_name_plural }}@endif">
                                 </div>
                             </div>
                             <div class="row clearfix">
                                 <div class="col-md-6 form-group">
-                                    <label for="email">URL Slug (must be unique)</label>
+                                    <label for="email">URL 别名 (must be unique)</label>
                                     <input type="text" class="form-control" name="slug" placeholder="URL slug (ex. posts)"
                                            value="@if(isset($dataType->slug)){{ $dataType->slug }}@else{{ $slug }}@endif">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="email">Icon (optional) Use a <a
+                                    <label for="email">图标 (optional) 使用 <a
                                                 href="{{ voyager_asset('fonts/voyager/icons-reference.html') }}"
                                                 target="_blank">Voyager Font Class</a></label>
                                     <input type="text" class="form-control" name="icon"
@@ -91,7 +91,7 @@
                             </div>
                             <div class="row clearfix">
                                 <div class="col-md-6 form-group">
-                                    <label for="email">Model Name</label>
+                                    <label for="email">模型名字</label>
                                     <span class="glyphicon glyphicon-question-sign"
                                         aria-hidden="true"
                                         data-toggle="tooltip"
@@ -101,7 +101,7 @@
                                            value="@if(isset($dataType->model_name)){{ $dataType->model_name }}@else{{ $model_name }}@endif">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="email">Controller Name</label>
+                                    <label for="email">控制器名字</label>
                                     <span class="glyphicon glyphicon-question-sign"
                                         aria-hidden="true"
                                         data-toggle="tooltip"
@@ -113,20 +113,20 @@
                             </div>
                             <div class="row clearfix">
                                 <div class="col-md-6 form-group">
-                                    <label for="generate_permissions">Generate Permissions</label><br>
+                                    <label for="generate_permissions">生成权限</label><br>
                                     <?php $checked = (isset($dataType->generate_permissions) && $dataType->generate_permissions == 1) ? true : (isset($generate_permissions) && $generate_permissions) ? true : false; ?>
                                     <input type="checkbox" name="generate_permissions" class="toggleswitch"
                                            @if($checked) checked @endif>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="server_side">Server-side Pagination</label><br>
+                                    <label for="server_side">服务器端分页</label><br>
                                     <?php $checked = (isset($dataType->server_side) && $dataType->server_side == 1) ? true : (isset($server_side) && $server_side) ? true : false; ?>
                                     <input type="checkbox" name="server_side" class="toggleswitch"
                                            @if($checked) checked @endif>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="description">Description</label>
+                                <label for="description">描述</label>
                                 <textarea class="form-control" name="description"
                                           placeholder="Description"
                                     >@if(isset($dataType->description)){{ $dataType->description }}@endif</textarea>
@@ -136,16 +136,16 @@
 
                     <div class="panel panel-primary panel-bordered">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Edit the rows for the {{ $table }} table below:</h3>
+                            <h3 class="panel-title">编辑行,在这张 {{ $table }} 表, 以下:</h3>
                         </div>
 
                         <div class="panel-body">
                             <div class="row fake-table-hd">
-                                <div class="col-xs-2">Field</div>
-                                <div class="col-xs-2">Visibility</div>
-                                <div class="col-xs-2">Input Type</div>
-                                <div class="col-xs-2">Display Name</div>
-                                <div class="col-xs-4">Optional Details</div>
+                                <div class="col-xs-2">字段</div>
+                                <div class="col-xs-2">可见性</div>
+                                <div class="col-xs-2">输入类型</div>
+                                <div class="col-xs-2">显示名字</div>
+                                <div class="col-xs-4">配置详情</div>
                             </div>
 
                             <div id="bread-items">
@@ -241,7 +241,7 @@
                             </div>
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">提交</button>
                             </div>
                         </div><!-- .panel-body -->
                     </div><!-- .panel -->

@@ -24,7 +24,7 @@ class VoyagerBreadController extends Controller
 
     public function index(Request $request)
     {
-        
+
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
 
@@ -64,7 +64,7 @@ class VoyagerBreadController extends Controller
         if (view()->exists("voyager::$slug.browse")) {
             $view = "voyager::$slug.browse";
         }
-        //dd($view);
+
         return view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
     }
 

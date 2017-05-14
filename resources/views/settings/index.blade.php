@@ -1,5 +1,5 @@
 @extends('voyager::master')
-
+@section('page_title','设置')
 @section('css')
     <style>
         .panel-actions .voyager-trash {
@@ -324,16 +324,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title">
-                        <i class="voyager-trash"></i> Are you sure you want to delete the <span id="delete_setting_title"></span> Setting?
+                        <i class="voyager-trash"></i> 你确定你想要删除这个 <span id="delete_setting_title"></span> 设置?
                     </h4>
                 </div>
                 <div class="modal-footer">
                     <form action="{{ route('voyager.settings.delete', ['id' => '__id']) }}" id="delete_form" method="POST">
                         {{ method_field("DELETE") }}
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="Yes, Delete This Setting">
+                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="确认,删除这个设置">
                     </form>
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>

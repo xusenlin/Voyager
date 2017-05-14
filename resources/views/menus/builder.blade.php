@@ -1,13 +1,13 @@
 @extends('voyager::master')
-
+@section('page_title','菜单构建')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ voyager_asset('css/nestable.css') }}">
 @stop
 
 @section('page_header')
     <h1 class="page-title">
-        <i class="voyager-list"></i>Menu Builder ({{ $menu->name }})
-        <div class="btn btn-success add_item"><i class="voyager-plus"></i> New Menu Item</div>
+        <i class="voyager-list"></i>菜单构建({{ $menu->name }})
+        <div class="btn btn-success add_item"><i class="voyager-plus"></i> 新菜单节点</div>
     </h1>
     @include('voyager::multilingual.language-selector')
 @stop
@@ -20,10 +20,13 @@
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-heading">
-                        <p class="panel-title" style="color:#777">Drag and drop the menu Items below to re-arrange them.</p>
+                        <p class="panel-title" style="color:#777">拖放节点改变菜单。
+                            {{--Drag and drop the menu Items below to re-arrange them.--}}
+                        </p>
                     </div>
 
                     <div class="panel-body" style="padding:30px;">
+
                         <div class="dd">
                             {!! menu($menu->name, 'admin', ['isModelTranslatable' => $isModelTranslatable]) !!}
                         </div>
@@ -40,7 +43,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-trash"></i> Are you sure you want to delete this menu item?</h4>
+                    <h4 class="modal-title"><i class="voyager-trash"></i> 你确定你想要删除这个菜单节点?</h4>
                 </div>
                 <div class="modal-footer">
                     <form action="{{ route('voyager.menus.item.destroy', ['menu' => $menu->id, 'id' => '__id']) }}"
@@ -49,9 +52,9 @@
                         {{ method_field("DELETE") }}
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-danger pull-right delete-confirm"
-                               value="Yes, Delete This Menu Item">
+                               value="确定,删除这个菜单节点">
                     </form>
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">关闭</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -64,8 +67,8 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 id="m_hd_add" class="modal-title hidden"><i class="voyager-plus"></i> Create a New Menu Item</h4>
-                    <h4 id="m_hd_edit" class="modal-title hidden"><i class="voyager-edit"></i> Edit Menu Item</h4>
+                    <h4 id="m_hd_add" class="modal-title hidden"><i class="voyager-plus"></i> 创建一个新的菜单节点</h4>
+                    <h4 id="m_hd_edit" class="modal-title hidden"><i class="voyager-edit"></i> 编辑菜单节点</h4>
                 </div>
                 <form action="" id="m_form" method="POST"
                       data-action-add="{{ route('voyager.menus.item.add', ['menu' => $menu->id]) }}"
@@ -75,43 +78,43 @@
                     {{ csrf_field() }}
                     <div class="modal-body">
                         @include('voyager::multilingual.language-selector')
-                        <label for="name">Title of the Menu Item</label>
+                        <label for="name">菜单节点标题</label>
                         @include('voyager::multilingual.input-hidden', ['_field_name' => 'title', '_field_trans' => ''])
-                        <input type="text" class="form-control" id="m_title" name="title" placeholder="Title"><br>
-                        <label for="type">Link type</label>
+                        <input type="text" class="form-control" id="m_title" name="title" placeholder="标题"><br>
+                        <label for="type">链接类型</label>
                         <select id="m_link_type" class="form-control" name="type">
-                            <option value="url" selected="selected">Static URL</option>
-                            <option value="route">Dynamic Route</option>
+                            <option value="url" selected="selected">静态 URL</option>
+                            <option value="route">动态路由</option>
                         </select><br>
                         <div id="m_url_type">
-                            <label for="url">URL for the Menu Item</label>
+                            <label for="url">菜单的 URL</label>
                             <input type="text" class="form-control" id="m_url" name="url" placeholder="URL"><br>
                         </div>
                         <div id="m_route_type">
-                            <label for="route">Route for the menu item</label>
+                            <label for="route">菜单的路由</label>
                             <input type="text" class="form-control" id="m_route" name="route" placeholder="Route"><br>
-                            <label for="parameters">Route parameters (if any)</label>
+                            <label for="parameters">路由参数 (如果有)</label>
                             <textarea rows="3" class="form-control" id="m_parameters" name="parameters" placeholder="{{ json_encode(['key' => 'value'], JSON_PRETTY_PRINT) }}"></textarea><br>
                         </div>
-                        <label for="icon_class">Font Icon class for the Menu Item (Use a <a
+                        <label for="icon_class">菜单节点的图表 (使用<a
                                     href="{{ voyager_asset('fonts/voyager/icons-reference.html') }}"
                                     target="_blank">Voyager Font Class</a>)</label>
                         <input type="text" class="form-control" id="m_icon_class" name="icon_class"
-                               placeholder="Icon Class (optional)"><br>
-                        <label for="color">Color in RGB or hex (optional)</label>
+                               placeholder="图标类 (optional)"><br>
+                        <label for="color">RGB 颜色或者十六进制 (optional)</label>
                         <input type="color" class="form-control" id="m_color" name="color"
                                placeholder="Color (ex. #ffffff or rgb(255, 255, 255)"><br>
-                        <label for="target">Open In</label>
+                        <label for="target">打开方式</label>
                         <select id="m_target" class="form-control" name="target">
-                            <option value="_self" selected="selected">Same Tab/Window</option>
-                            <option value="_blank">New Tab/Window</option>
+                            <option value="_self" selected="selected">在这个窗口标签</option>
+                            <option value="_blank">在新的窗口标签</option>
                         </select>
                         <input type="hidden" name="menu_id" value="{{ $menu->id }}">
                         <input type="hidden" name="id" id="m_id" value="">
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-success pull-right delete-confirm__" value="Update">
-                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-success pull-right delete-confirm__" value="更新">
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">关闭</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->

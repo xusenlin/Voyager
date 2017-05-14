@@ -1,5 +1,5 @@
 @extends('voyager::master')
-
+@section('page_title','数据库')
 @section('css')
     <script type="text/javascript" src="{{ voyager_asset('js/vue21.min.js') }}"></script>
     <link rel="stylesheet" href="{{ voyager_asset('css/database.css') }}">
@@ -93,16 +93,15 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-trash"></i> Are you sure you want to delete the BREAD for
-                        the <span id="delete_builder_name"></span> table?</h4>
+                    <h4 class="modal-title"><i class="voyager-trash"></i> 你确定你想要删除这个 BREAD 在这张 <span id="delete_builder_name"></span> 表?</h4>
                 </div>
                 <div class="modal-footer">
                     <form action="{{ route('voyager.database.bread.delete', ['id' => null]) }}" id="delete_builder_form" method="POST">
                         {{ method_field('DELETE') }}
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" class="btn btn-danger" value="Yes, remove the BREAD">
+                        <input type="submit" class="btn btn-danger" value="确认移除 BREAD">
                     </form>
-                    <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">关闭</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -114,16 +113,16 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-trash"></i> Are you sure you want to delete the <span
-                                id="delete_table_name"></span> table?</h4>
+                    <h4 class="modal-title"><i class="voyager-trash"></i> 你确定你想要删除这张<span
+                                id="delete_table_name"></span>表?</h4>
                 </div>
                 <div class="modal-footer">
                     <form action="{{ route('voyager.database.destroy', ['database' => '__database']) }}" id="delete_table_form" method="POST">
                         {{ method_field('DELETE') }}
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" class="btn btn-danger pull-right" value="Yes, delete this table">
+                        <input type="submit" class="btn btn-danger pull-right" value="确认删除这张表">
                         <button type="button" class="btn btn-outline pull-right" style="margin-right:10px;"
-                                data-dismiss="modal">Cancel
+                                data-dismiss="modal">关闭
                         </button>
                     </form>
 
@@ -144,11 +143,11 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Field</th>
-                            <th>Type</th>
-                            <th>Null</th>
+                            <th>字段</th>
+                            <th>类型</th>
+                            <th>为空</th>
                             <th>Key</th>
-                            <th>Default</th>
+                            <th>默认值</th>
                             <th>Extra</th>
                         </tr>
                         </thead>
@@ -165,7 +164,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">关闭</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -223,7 +222,7 @@
             $('td.actions').on('click', '.delete_table', function (e) {
                 table = $(this).data('table');
                 if ($(this).hasClass('remove-bread-warning')) {
-                    toastr.warning("Please make sure to remove the BREAD on this table before deleting the table.");
+                    toastr.warning("请确认删除这个表之前先移除这个表的 BREAD .");
                 } else {
                     $('#delete_table_name').text(table);
                     $('#delete_table_form')[0].action = $('#delete_table_form')[0].action.replace('__database', table);

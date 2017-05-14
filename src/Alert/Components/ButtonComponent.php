@@ -17,6 +17,7 @@ class ButtonComponent extends AbstractComponent
 
     public function render()
     {
+
         return "<a href='{$this->link}' class='btn btn-{$this->style}'>{$this->text}</a>";
     }
 }

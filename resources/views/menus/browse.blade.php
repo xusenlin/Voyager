@@ -1,5 +1,5 @@
 @extends('voyager::master')
-
+@section('page_title',$dataType->display_name_plural)
 @section('page_header')
     <h1 class="page-title">
         <i class="voyager-list-add"></i> {{ $dataType->display_name_plural }}
@@ -96,7 +96,15 @@
     <!-- DataTables -->
     <script>
         $(document).ready(function () {
-            $('#dataTable').DataTable({ "order": [] });
+            $('#dataTable').DataTable({
+                "order": [],
+                "oLanguage":{
+                    "sInfo":"从 _START_  到  _END_  /共 _TOTAL_ 条数据",
+                    "sLengthMenu":"每页显示 _MENU_ 条记录",
+                    "sSearch":'搜索',
+                    "oPaginate":{"sFirst":'首页',"sPrevious":"上一页","sNext":"下一页","sLast":"尾页"}
+                }
+            });
         });
 
         $('td').on('click', '.delete', function (e) {

@@ -2,7 +2,7 @@
 
 <div class="panel panel-bordered">
     <div class="panel-heading">
-        <h3 class="panel-title">@if($db->action == 'update'){{ "Edit the {$db->table->name} table below" }}@else{{ 'Create Your New Table Below' }}@endif</h3>
+        <h3 class="panel-title">@if($db->action == 'update'){{ "编辑这张{$db->table->name}表,以下" }}@else{{ '创建这个表,以下' }}@endif</h3>
     </div>
 
     <div class="panel-body">
@@ -12,21 +12,21 @@
         @else
             <div class="col-md-6">
         @endif
-                <label for="name">Table Name</label><br>
+                <label for="name">表名字</label><br>
                 <input v-model.trim="table.name" type="text" class="form-control" placeholder="Table Name" required pattern="{{ $db->identifierRegex }}">
             </div>
 
         @if($db->action == 'create')
             <div class="col-md-3 col-sm-4 col-xs-6">
-                <label for="create_model">Create model for this table?</label><br>
+                <label for="create_model">在这个表上创建模型?</label><br>
                 <input type="checkbox" name="create_model" data-toggle="toggle"
-                       data-on="Yes, Please" data-off="No Thanks">
+                       data-on="是的,谢谢" data-off="不,谢谢">
             </div>
 
             <div class="col-md-3 col-sm-4 col-xs-6">
-                <label for="create_migration">Create migration for this table?</label><br>
+                <label for="create_migration">在这个表上创建迁移?</label><br>
                 <input disabled type="checkbox" name="create_migration" data-toggle="toggle"
-                       data-on="Yes, Please" data-off="No Thanks">
+                       data-on="是的,谢谢" data-off="不,谢谢">
             </div>
         @endif
         </div><!-- .panel-body .row -->
@@ -38,19 +38,19 @@
         <div id="alertsContainer"></div>
 
         <template v-if="tableHasColumns">
-            <p>Table Columns</p>
+            <p>表列</p>
 
             <table class="table table-bordered" style="width:100%;">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Length</th>
-                    <th>Not Null</th>
-                    <th>Unsigned</th>
-                    <th>Auto Increment</th>
-                    <th>Index</th>
-                    <th>Default</th>
+                    <th>名字</th>
+                    <th>类型</th>
+                    <th>长度</th>
+                    <th>不能为空</th>
+                    <th>无字符</th>
+                    <th>自增</th>
+                    <th>索引</th>
+                    <th>默认</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -70,7 +70,7 @@
             </table>
         </template>
         <div v-else>
-          <p>The table has no columns...</p>
+          <p>这个表没有列...</p>
         </div>
 
         <div style="text-align:center">
@@ -82,7 +82,7 @@
 
     <div class="panel-footer">
         <input type="submit" class="btn btn-primary pull-right"
-               value="@if($db->action == 'update'){{ 'Update Table' }}@else{{ 'Create New Table' }}@endif"
+               value="@if($db->action == 'update'){{ '更新表' }}@else{{ '创建表' }}@endif"
                :disabled="!tableHasColumns">
         <div style="clear:both"></div>
     </div>

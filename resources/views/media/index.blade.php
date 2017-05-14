@@ -1,12 +1,18 @@
 @extends('voyager::master')
-
+@section('page_title','媒体库')
 @section('css')
     <script type="text/javascript" src="{{ voyager_asset('js/vue1.min.js') }}"></script>
     <link rel="stylesheet" href="{{ voyager_asset('css/media/media.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ voyager_asset('js/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ voyager_asset('css/media/dropzone.css') }}"/>
 @stop
-
+@section('head')
+    <style>
+        .modal-open .select2-container{
+            z-index: 100002!important;
+        }
+    </style>
+@stop
 @section('content')
 
     <div class="page-content container-fluid">
@@ -139,14 +145,14 @@
                                                 <source src="@{{selected_file.path}}" type="video/mp4">
                                                 <source src="@{{selected_file.path}}" type="video/ogg">
                                                 <source src="@{{selected_file.path}}" type="video/webm">
-                                                Your browser does not support the video tag.
+                                                你的浏览器不支持这个视频标签.
                                             </video>
                                         </template>
                                         <template v-if="selected_file.type.includes('audio')">
                                             <audio controls style="width:100%; margin-top:5px;">
                                                 <source src="@{{selected_file.path}}" type="audio/ogg">
                                                 <source src="@{{selected_file.path}}" type="audio/mpeg">
-                                                Your browser does not support the audio element.
+                                                你的浏览器不支持这个音频元素.
                                             </audio>
                                         </template>
                                         <template v-if="selected_file.type == 'folder'">
@@ -194,11 +200,11 @@
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"
                                             aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title"><i class="voyager-move"></i> Move File/Folder</h4>
+                                    <h4 class="modal-title"><i class="voyager-move"></i> 移动 文件/文件夹</h4>
                                 </div>
 
                                 <div class="modal-body">
-                                    <h4>Destination Folder</h4>
+                                    <h4>目标文件夹</h4>
                                     <select id="move_folder_dropdown">
                                         <template v-if="folders.length">
                                             <option value="/../">../</option>
@@ -210,8 +216,8 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-warning" id="move_btn">Move</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-warning" id="move_btn">移动</button>
                                 </div>
                             </div>
                         </div>
@@ -226,18 +232,18 @@
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"
                                             aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title"><i class="voyager-character"></i> Rename File/Folder</h4>
+                                    <h4 class="modal-title"><i class="voyager-character"></i> 重命名 文件/文件夹</h4>
                                 </div>
 
                                 <div class="modal-body">
-                                    <h4>New File/Folder Name</h4>
+                                    <h4>新 文件/文件夹 名字</h4>
                                     <input id="new_filename" class="form-control" type="text"
                                            value="@{{selected_file.name}}">
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-warning" id="rename_btn">Rename</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-warning" id="rename_btn">重命名</button>
                                 </div>
                             </div>
                         </div>
@@ -254,17 +260,17 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"
                                         aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-folder"></i> Add New Folder</h4>
+                                <h4 class="modal-title"><i class="voyager-folder"></i> 添加新文件夹</h4>
                             </div>
 
                             <div class="modal-body">
-                                <input name="new_folder_name" id="new_folder_name" placeholder="New Folder Name"
+                                <input name="new_folder_name" id="new_folder_name" placeholder="新的文件夹名字"
                                        class="form-control" value=""/>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-info" id="new_folder_submit">Create New Folder
+                                <button type="button" class="btn btn-info" id="new_folder_submit">创建新文件夹
                                 </button>
                             </div>
                         </div>
@@ -280,18 +286,17 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"
                                         aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-warning"></i> Are You Sure</h4>
+                                <h4 class="modal-title"><i class="voyager-warning"></i> 你确定?</h4>
                             </div>
 
                             <div class="modal-body">
-                                <h4>Are you sure you want to delete '<span class="confirm_delete_name"></span>'</h4>
-                                <h5 class="folder_warning"><i class="voyager-warning"></i> Deleting a folder will remove
-                                    all files and folders contained inside</h5>
+                                <h4>你确定你想要删除这个 '<span class="confirm_delete_name"></span>'</h4>
+                                <h5 class="folder_warning"><i class="voyager-warning"></i> 删除这个文件夹将会删除里面的全部文件和文件夹</h5>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-danger" id="confirm_delete">Yes, Delete it!
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-danger" id="confirm_delete">确定, 删除它!
                                 </button>
                             </div>
                         </div>
@@ -308,8 +313,8 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"
                                         aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-warning"></i> Drag and drop files or click
-                                    below to upload</h4>
+                                <h4 class="modal-title"><i class="voyager-warning"></i> 拖放文件或单击
+                                    浏览上传</h4>
                             </div>
 
                             <div class="modal-body">
@@ -317,7 +322,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">All done</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal"> 全部完成</button>
                             </div>
                         </div>
                     </div>

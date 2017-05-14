@@ -18,11 +18,11 @@
                     </li>
                 @endif
                 <?php
-                    $breadcrumb_url = '';
+                    $breadcrumb_url = asset('');
                     $voyager_zh = config('voyager.voyager_zh');
                 ?>
                 @for($i = 1; $i <= count(Request::segments()); $i++)
-                    <?php $breadcrumb_url .= '/' . Request::segment($i); ?>
+                    <?php $breadcrumb_url .= ($i ==1 ? '' :'/') . Request::segment($i); ?>
                     @if(Request::segment($i) != ltrim(route('voyager.dashboard', [], false), '/') && !is_numeric(Request::segment($i)))
 
                         @if($i < count(Request::segments()) & $i > 0)

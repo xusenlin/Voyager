@@ -1,5 +1,5 @@
 @extends('voyager::master')
-
+@section('page_title','编辑'.$dataType->display_name_singular)
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop

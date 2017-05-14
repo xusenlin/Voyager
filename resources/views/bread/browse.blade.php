@@ -118,7 +118,7 @@
                         </table>
                         @if (isset($dataType->server_side) && $dataType->server_side)
                             <div class="pull-left">
-                                <div role="status" class="show-res" aria-live="polite">显示 {{ $dataTypeContent->firstItem() }} 到 {{ $dataTypeContent->lastItem() }} 条，共 {{ $dataTypeContent->total() }} 条数据</div>
+                                <div role="status" class="show-res" aria-live="polite">从 {{ $dataTypeContent->firstItem() }} 到 {{ $dataTypeContent->lastItem() }}  /共 {{ $dataTypeContent->total() }} 条数据</div>
                             </div>
                             <div class="pull-right">
                                 {{ $dataTypeContent->links() }}
@@ -170,6 +170,12 @@
         $(document).ready(function () {
             @if (!$dataType->server_side)
                 var table = $('#dataTable').DataTable({
+                    "oLanguage":{
+                        "sInfo":"从 _START_  到  _END_  /共 _TOTAL_ 条数据",
+                        "sLengthMenu":"每页显示 _MENU_ 条记录",
+                        "sSearch":'搜索',
+                        "oPaginate":{"sFirst":'首页',"sPrevious":"上一页","sNext":"下一页","sLast":"尾页"}
+                    },
                     "order": []
                     @if(config('dashboard.data_tables.responsive')), responsive: true @endif
                 });

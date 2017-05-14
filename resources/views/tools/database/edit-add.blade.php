@@ -1,5 +1,5 @@
 @extends('voyager::master')
-
+@section('page_title',$db->action == 'update' ? '编辑表' : '新增表')
 @section('css')
     <script type="text/javascript" src="{{ voyager_asset('js/vue21.min.js') }}"></script>
 @stop
@@ -8,9 +8,9 @@
     <h1 class="page-title">
         <i class="voyager-data"></i>
         @if($db->action == 'update')
-            {{ "Editing {$db->table->name} table" }}
+            {{ "编辑 {$db->table->name} 表" }}
         @else
-            {{ 'New Table' }}
+            {{ '新增表' }}
         @endif
     </h1>
 @stop
